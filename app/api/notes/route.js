@@ -1,11 +1,15 @@
 import { NextResponse } from "next/server";
 
+
 // config
 // db
 import dbConnection from "@/config/db";
 // models
 // notes
 import Note from "@/models/noteModel";
+
+
+
 
 
 // get all notes
@@ -15,7 +19,15 @@ export async function GET() {
         const notes = await Note.find().sort({createdAt: -1})
         return NextResponse.json({notes},{status: 200})
     }catch(err){
-        return NextResponse.json({error: 'get all notes error'},{status: 400})
+        return NextResponse.json(
+          { error: "get all notes error" },
+          {
+            status: 400,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+            },
+          }
+        );
     }
 }
 
@@ -46,3 +58,4 @@ export async function DELETE(request) {
         return NextResponse.json({error: 'delete note error'}, {status: 400})
     }
 }
+
