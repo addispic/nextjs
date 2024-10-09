@@ -28,7 +28,7 @@ export default function Home() {
   // get all notes
   const  getAllNotes = async () => {
     try{
-      const response = await axios.get("http://localhost:3000/api/notes",);
+      const response = await axios.get("http://localhost:3001/api/notes",);
       if (response?.data?.notes){
         setNotes(response.data.notes);
       } 
@@ -42,7 +42,7 @@ export default function Home() {
     let element = document.getElementById("note-text-area");
     if(text.trim()){
       try{
-        const response = await axios.post("http://localhost:3000/api/notes", {
+        const response = await axios.post("http://localhost:3001/api/notes", {
           text,
         });
         if(response?.data?.note){
@@ -60,10 +60,9 @@ export default function Home() {
   const deleteNote = async _id => {
     try{
       const response = await axios.delete(
-        `http://localhost:3000/api/notes?_id=${_id}`,
+        `http://localhost:3001/api/notes?_id=${_id}`,
         { _id }
       );
-      console.log(response.data)
       if(response?.data._id){
         setNotes(notes.filter(noteItem => noteItem._id !== response?.data._id))
       }

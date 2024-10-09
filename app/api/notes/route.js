@@ -23,9 +23,6 @@ export async function GET() {
           { error: "get all notes error" },
           {
             status: 400,
-            headers: {
-              "Access-Control-Allow-Origin": true,
-            },
           }
         );
     }
